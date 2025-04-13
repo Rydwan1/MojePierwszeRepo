@@ -11,29 +11,29 @@ class Program
 
     {
 
-        int width = 10;
+        int szerokość = 10;
 
-        int height = 10;
+        int wysokość = 10;
 
-        int bombCount = 15;
-
-
-
-        char[,] board = InitializeBoard(width, height, bombCount);
-
-        char[,] displayBoard = InitializeDisplayBoard(width, height);
+        int ilośćBomb = 15;
 
 
 
-        bool gameOver = false;
+        char[,] tablica = InitializeBoard(szerokość, wysokość, ilośćBomb);
+
+        char[,] wyświetlanaTablica = InitializeDisplayBoard(szerokość, wysokość);
 
 
 
-        while (!gameOver)
+        bool koniecGry = false;
+
+
+
+        while (!koniecGry)
 
         {
 
-            DisplayBoard(displayBoard);
+            DisplayBoard(wyświetlanaTablica);
 
 
 
@@ -47,17 +47,17 @@ class Program
 
             {
 
-                if (x >= 0 && x < width && y >= 0 && y < height && displayBoard[y, x] == ' ')
+                if (x >= 0 && x < szerokość && y >= 0 && y < wysokość && wyświetlanaTablica[y, x] == ' ')
 
                 {
 
-                    if (board[y, x] == '*')
+                    if (tablica[y, x] == '*')
 
                     {
 
                         Console.WriteLine("Boom! Koniec gry.");
 
-                        gameOver = true;
+                        koniecGry = true;
 
                     }
 
@@ -65,9 +65,9 @@ class Program
 
                     {
 
-                        int count = CountAdjacentBombs(board, x, y);
+                        int count = CountAdjacentBombs(tablica, x, y);
 
-                        displayBoard[y, x] = count.ToString()[0];
+                        wyświetlanaTablica[y, x] = count.ToString()[0];
 
 
 
@@ -77,19 +77,19 @@ class Program
 
                             // Odkryj sąsiadujące puste pola.
 
-                            ExpandZeros(board, displayBoard, x, y);
+                            ExpandZeros(tablica, wyświetlanaTablica, x, y);
 
                         }
 
 
 
-                        if (CheckWin(displayBoard, bombCount))
+                        if (CheckWin(wyświetlanaTablica, ilośćBomb))
 
                         {
 
                             Console.WriteLine("Gratulacje! Wygrałeś!");
 
-                            gameOver = true;
+                            koniecGry = true;
 
                         }
 
