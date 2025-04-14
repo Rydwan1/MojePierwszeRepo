@@ -11,9 +11,9 @@ class Program
 
     {
 
-        int width = 10;
+        int width = 100;
 
-        int height = 10;
+        int height = 100;
 
         int bombCount = 15;
 
